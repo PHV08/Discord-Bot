@@ -11,7 +11,6 @@
 
 PHV has a lot of features, with **8 main categories**:
 
-*   🎵 **Music**: `play`, `skip`, `queue`, `np`,`filters` and **10** more! 
 *   👩‍💼 **Information**: `info`, `help`, `invite` and **2** more! 
 *   🚓 **Anime**: `anime`, `hug`, `karma`, `neko` and **11** more! 
 *   🔲 **Buttons** : `snake`,  and **1** more!
