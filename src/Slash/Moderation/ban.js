@@ -1,57 +1,52 @@
-const { Client, CommandInteraction, MessageEmbed } = require('discord.js');
+const { Client, Message, MessageEmbed } = require('discord.js');
 
 module.exports = {
     name: 'ban',
-    description: 'Ban a member from the server',
-    options: [
-        {
-            type: 9,
-            name: 'member',
-            description: 'Member to ban',
-            required: true,
-        },
-        {
-            type: 3,
-            name: 'reason',
-            description: 'Reason why you want to ban this member',
-        },
-    ],
-    userPermissions: ['BAN_MEMBERS'],
-    userperm: ['BAN_MEMBERS'],
-    botperm: ['BAN_MEMBERS'],
+    description: '(Under development)',
+    aliases: ['bonk'],
+    emoji: '🔨',
+    userperm: ['BAN_MEMBERS', 'SEND_MESSAGES'],
+    botperm: ['BAN_MEMBERS', 'SEND_MESSAGES'],
     /**
      * @param {Client} client
-     * @param {CommandInteraction} interaction
+     * @param {Message} message
      * @param {String[]} args
      */
-    run: async (client, interaction, args) => {
-        const [member, reason] = args;
-        const memberFixed = await client.guilds.cache.get(interaction.guild.id).members.fetch(member);
+    run: async (client, message, args) => {
+        const member = message.mentions.members.first();
+        if (!member) return message.reply('Please mention a member to ban!');
 
-        if (interaction.member.roles.highest <= memberFixed.roles.highest.position)
-            return interaction.followUp({
-                content: "You can't punish because u either have the same role or your role is lower.",
-                ephemeral: true,
-            });
+        if (message.member.roles.highest.position <= member.roles.highest.position)
+            return message.reply("You can't punish because you either have the same role or your role is lower.");
 
-        const reasonFixed = reason || 'No reason provided';
-        const memberPfp = client.users.cache.get(memberFixed.id).displayAvatarURL({ size: 512, dynamic: true });
+        const reason = args.slice(1).join(' ') || 'No Reason Provided';
+        const memberPfp = member.user.displayAvatarURL({ size: 512, dynamic: true });
+
+        const fields = [
+            { name: 'Banned user', value: member.toString() },
+            { name: 'Moderator', value: `<@${message.author.id}>` },
+            { name: 'Reason', value: reason },
+        ];
+
         const embed = new MessageEmbed()
-            .setTitle(`Successfully banned ${memberFixed.user.username} from this server!`)
+            .setTitle(`Successfully banned ${member.user.username} from this server!`)
             .setThumbnail(memberPfp)
-            .addFields(
-                { name: 'Banned user', value: memberFixed },
-                { name: 'Moderator', value: `<@${interaction.user.id}>` },
-                { name: 'Reason', value: reasonFixed }
-            )
+            .setColor('RED')
             .setTimestamp();
 
-        await memberFixed.ban({ reason }).catch(err =>
-            interaction.followUp({
-                content: `An error has occured while trying to ban!\nError message :\n\`\`\`yml\n${err}\n\`\`\``,
-                ephemeral: true,
-            })
-        );
-        interaction.followUp({ embeds: [embed] });
+        // Validate and add fields to the embed
+        fields.forEach(field => {
+            const { name, value } = field;
+            if (name && value) {
+                embed.addField(name, value);
+            }
+        });
+
+        try {
+            await member.ban({ reason: reason });
+            message.channel.send({ embeds: [embed] });
+        } catch (error) {
+            message.channel.send(`An error occurred while trying to ban!\nError message:\n\`\`\`yml\n${error}\n\`\`\``);
+        }
     },
 };
