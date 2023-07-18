@@ -14,31 +14,39 @@ module.exports = {
      */
     run: async (client, message, args) => {
         const member = message.mentions.members.first();
-        if (!member) return message.reply({ content: 'Please mention a member to ban!' });
+        if (!member) return message.reply('Please mention a member to ban!');
 
         if (message.member.roles.highest.position <= member.roles.highest.position)
-            return message.reply({
-                content: "You can't punish because u either have the same role or your role is lower.",
-            });
+            return message.reply("You can't punish because you either have the same role or your role is lower.");
 
         const reason = args.slice(1).join(' ') || 'No Reason Provided';
-        const memberPfp = client.users.cache.get(member.id).displayAvatarURL({ size: 512, dynamic: true });
+        const memberPfp = member.user.displayAvatarURL({ size: 512, dynamic: true });
+
+        const fields = [
+            { name: 'Banned user', value: member.toString() },
+            { name: 'Moderator', value: `<@${message.author.id}>` },
+            { name: 'Reason', value: reason },
+        ];
+
         const embed = new MessageEmbed()
             .setTitle(`Successfully banned ${member.user.username} from this server!`)
             .setThumbnail(memberPfp)
-            .addFields(
-                { name: 'Banned user', value: member },
-                { name: 'Moderator', value: `<@${message.author.id}>` },
-                { name: 'Reason', value: reason }
-            )
             .setColor('RED')
             .setTimestamp();
 
-        await member.ban({ reason }).catch(err =>
-            message.channel.send({
-                content: `An error has been occured while trying to ban!\nError message :\n\`\`\`yml\n${err}\n\`\`\``,
-            })
-        );
-        message.channel.send({ embeds: [embed] });
+        // Validate and add fields to the embed
+        fields.forEach(field => {
+            const { name, value } = field;
+            if (name && value) {
+                embed.addField(name, value);
+            }
+        });
+
+        try {
+            await member.ban({ reason: reason });
+            message.channel.send({ embeds: [embed] });
+        } catch (error) {
+            message.channel.send(`An error occurred while trying to ban!\nError message:\n\`\`\`yml\n${error}\n\`\`\``);
+        }
     },
 };
