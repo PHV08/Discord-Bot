@@ -1,3 +1,5 @@
+[![Discord Server](https://discordapp.com/api/guilds/1119870097612349511/embed.png)](https://discord.gg/4npsjZNf)
+
 ## Categories 📑
 - [x] Fun
 - [x] Anime
