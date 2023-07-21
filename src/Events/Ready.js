@@ -4,9 +4,9 @@ const chalk = require('chalk');
 const prefix = process.env.PREFIX;
 
 const statuses = [
-  { name: `${prefix}help | Live at 65 servers`, type: 'LISTENING' },
-  { name: 'PHV COMMUNITY', type: 'WATCHING' },
-  { name: 'Buy PHV NOW!!', type: 'PLAYING' },
+  { name: `${prefix}help | Live at ${client.guilds.cache.size} servers`, type: 'STREAMING', url: 'https://twitch.tv/#' },
+  { name: '100 Commands', type: 'STREAMING', url: 'https://twitch.tv/#' },
+  { name: 'UNKNOWN PHV', type: 'STREAMING', url: 'https://twitch.tv/#' },
   // Add more statuses as needed
 ];
 
@@ -21,7 +21,7 @@ client.on('ready', async () => {
     )}`
   );
 
-  // Set a timer to change the status every 10 seconds (adjust as needed)
+  // Change (optionally) the time.
   setInterval(() => {
     statusIndex = (statusIndex + 1) % statuses.length;
     setStatus();
@@ -29,6 +29,6 @@ client.on('ready', async () => {
 });
 
 function setStatus() {
-  const { name, type } = statuses[statusIndex];
-  client.user.setActivity(name, { type });
+  const { name, type, url } = statuses[statusIndex];
+  client.user.setActivity(name, { type, url });
 }
