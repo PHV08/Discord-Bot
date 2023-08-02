@@ -52,7 +52,7 @@ $ pnpm start
 * **Note**
 * If you wish to contribute then please create a pull request or just dm me what ideas you have.
 * Join [Discord Server](https://discord.gg/UV22V6fEAv).
-*[YouTube](https://www.youtube.com/channel/UCGTbFucVXPA9OBTUPZj-TzQ).
+* [YouTube](https://www.youtube.com/channel/UCGTbFucVXPA9OBTUPZj-TzQ).
 
 
 ## 📄 License
