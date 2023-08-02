@@ -19,7 +19,7 @@ PHV has a lot of features, with **8 main categories**:
 *   🤖 **ChatBot**: `chatbot` and **2** more! 
 *   👻 **Fun**: `binary`, `clyde`, `comment`, `eject`, `iq`, `reddit` and **8** more!
 *   ✉️ **Other**: `profile`, `addemoji`, `snipe`, `wiki` and **3** more!
-*   👑 **Owner**: `eval`, `reload`, 'terminal'
+*   👑 **Owner**: `eval`, `reload`, `terminal`
 
 
 ## ➡️ Installing
@@ -49,6 +49,11 @@ $ pnpm start
 # [INFO] Connected to the database!
 # [INFO] PHV is Up and Ready to Go!
 ```
+* **Note**
+* If you wish to contribute then please create a pull request or just dm me what ideas you have.
+* Join [Discord Server](https://discord.gg/UV22V6fEAv).
+*[YouTube](https://www.youtube.com/channel/UCGTbFucVXPA9OBTUPZj-TzQ).
+
 
 ## 📄 License
 
