@@ -15,15 +15,13 @@ client.on('guildMemberAdd', async (member) => {
       size: 1024,
     });
 
-    const supportServerLink = 'https://discord.gg/UV22V6fEAv';
-
     const welcomeMessage = new MessageEmbed()
-      .setTitle('New member!')
+      .setTitle(`Welcome to ${member.guild.name}!`)
+      .setDescription(`<a:welcome:1142462881510735872> Hello <@${member.user.id}>, welcome to **${member.guild.name}**! <a:welcome:1142462881510735872>`)
       .setThumbnail(userAvatar)
-      .setDescription(`Hello <@${member.user.id}>, welcome to **${member.guild.name}**!`)
-      .addField('Support Server', `[Join our support server](${supportServerLink})`)
+      .addField('Member Information', `👤 User Tag: ${member.user.tag}\n🆔 User ID: ${member.user.id}`)
+      .addField('Server Info', `📜 Server Name: ${member.guild.name}\n👥 Total members: ${member.guild.memberCount}`)
       .setImage('https://static.dribbble.com/users/27231/screenshots/2432051/welcome.gif')
-      .setFooter(`Total members: ${member.guild.memberCount}`)
       .setColor('BLUE')
       .setTimestamp();
 
