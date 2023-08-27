@@ -64,3 +64,7 @@ jspm_packages/
 
 # Editor things
 .vscode/
+
+# Other
+.config/
+replit_zip_error_log
