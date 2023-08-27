@@ -1,5 +1,5 @@
 {
-    "name": "PHV",
+    "name": "phv-discord-bot",
     "version": "5.0.0",
     "main": "index.js",
     "scripts": {
