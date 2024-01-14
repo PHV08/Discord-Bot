@@ -1,4 +1,4 @@
-[![DiscordBanner](https://invidget.switchblade.xyz/RWSEj6JrjJ)](https://discord.gg/cJkkCtMV99)
+[![DiscordBanner](https://invidget.switchblade.xyz/cJkkCtMV99)](https://discord.gg/cJkkCtMV99)
 
 ## Categories 📑
 - [x] Fun
