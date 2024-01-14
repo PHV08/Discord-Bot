@@ -1,4 +1,4 @@
-[![Discord Server](https://discordapp.com/api/guilds/1119870097612349511/embed.png)](https://discord.gg/UV22V6fEAv)
+[![DiscordBanner](https://invidget.switchblade.xyz/RWSEj6JrjJ)](https://discord.gg/cJkkCtMV99)
 
 ## Categories 📑
 - [x] Fun
